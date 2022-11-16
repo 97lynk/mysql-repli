@@ -40,7 +40,7 @@ $ docker network ls
 ```
 ## 4. Creating 3 MySQL containers
 
-Run the commands below in a terminal.
+Run the commands below in a terminal to create mysql.
 ```
 docker run -d --rm --name=master --net=replicanet --hostname=master \
   -v $PWD/d0:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mypass \
@@ -58,6 +58,12 @@ docker run -d --rm --name=slave2 --net=replicanet --hostname=slave2 \
   mysql/mysql-server:5.7 \
   --server-id=3
 ```
+
+or run docker compose
+```
+docker-compose up
+```
+
 It's possible to see whether the containers are started by running:
 ```
 $ docker ps -a
