@@ -1,0 +1,46 @@
+version: '3'
+networks:
+  mysql-net:
+services:
+  master-db:
+    container_name: "master-db"
+    image: mysql/mysql-server:5.7
+    platform: linux/amd64
+    hostname: master
+    volumes:
+      - $PWD/d0:/var/lib/mysql
+    ports:
+      - "3008:3006"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    networks:
+      - mysql-net
+
+  slave1-db:
+    container_name: "slave1-db"
+    image: mysql/mysql-server:5.7
+    platform: linux/amd64
+    hostname: slave1
+    volumes:
+      - $PWD/d1:/var/lib/mysql
+    ports:
+      - "3009:3006"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    networks:
+      - mysql-net
+
+  slave2-db:
+    container_name: "slave2-db"
+    image: mysql/mysql-server:5.7
+    platform: linux/amd64
+    hostname: slave2
+    volumes:
+      - $PWD/d2:/var/lib/mysql
+    ports:
+      - "3010:3006"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+    networks:
+      - mysql-net
+
